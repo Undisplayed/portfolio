@@ -1,0 +1,222 @@
+/* Reset + base styles */
+body, html {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-40px);
+}
+
+#main-name {
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
+
+#subtitle {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.icon-area {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-top: -30px;
+}
+
+/* Icon wrappers positioned outside the icon area for label+arrow */
+.icon-wrapper {
+  position: absolute;
+  display: block;
+  width: 160px;
+  height: 160px;
+  cursor: pointer;
+}
+
+/* Position icon wrappers to create the square layout */
+.icon-wrapper:nth-child(1) { top: 60px; left: -80px; }
+.icon-wrapper:nth-child(2) { top: 60px; right: -80px; }
+.icon-wrapper:nth-child(3) { bottom: -60px; left: -80px; }
+.icon-wrapper:nth-child(4) { bottom: -60px; right: -80px; }
+
+.icon {
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  display: block;
+  pointer-events: none;
+}
+
+.icon-wrapper:hover .icon {
+  transform: scale(1.1);
+  pointer-events: auto;
+}
+
+/* Fifth icon: center icon with hover behavior */
+#icon5-wrapper {
+  position: absolute;
+  top: 65%;
+  left: 51%;
+  width: 160px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+#icon5-wrapper .icon {
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+}
+
+#icon5-wrapper:hover .icon {
+  transform: scale(1.1);
+}
+
+/* Label hidden by default, shown only on hover */
+.label-text-center {
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 400;
+  user-select: none;
+  text-decoration: none;
+
+  /* Set position and spacing once */
+  margin-top: 20px;      /* space below the icon */
+  margin-left: -30px;
+  /* Keep position static, no transform */
+  display: inline-block;
+
+  /* Start hidden */
+  opacity: 0;
+  pointer-events: none;
+
+  /* Animate only opacity */
+  transition: opacity 0.5s ease;
+}
+
+#icon5-wrapper:hover .label-text-center {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* Label container: hidden by default, fades in on hover for other icons */
+.icon-wrapper .label-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.15s ease;
+}
+
+.icon-wrapper:hover .label-container {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Label text styles */
+.label-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  color: #ccc;
+  font-weight: 500;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Arrows bigger */
+.arrow {
+  width: 80px;
+  height: auto;
+  stroke: #ccc;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* LEFT SIDE labels/arrows */
+.icon-wrapper:nth-child(1) .label-container,
+.icon-wrapper:nth-child(3) .label-container {
+  right: 100%;
+  margin-right: 0;
+  justify-content: flex-end;
+  gap: 4px;
+  transform: translateX(-12px) translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper:nth-child(1) .label-container .label-text,
+.icon-wrapper:nth-child(3) .label-container .label-text {
+  order: 0;
+  margin-right: 4px;
+}
+
+.icon-wrapper:nth-child(1) .label-container .arrow,
+.icon-wrapper:nth-child(3) .label-container .arrow {
+  order: 1;
+  margin: 0;
+  transform: rotate(0deg);
+}
+
+/* RIGHT SIDE labels/arrows */
+.icon-wrapper:nth-child(2) .label-container,
+.icon-wrapper:nth-child(4) .label-container {
+  left: 100%;
+  margin-left: 0;
+  justify-content: flex-start;
+  gap: 4px;
+  transform: translateX(12px) translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper:nth-child(2) .label-container .arrow,
+.icon-wrapper:nth-child(4) .label-container .arrow {
+  order: 0;
+  margin: 0;
+  transform: rotate(0deg);
+}
+
+.icon-wrapper:nth-child(2) .label-container .label-text,
+.icon-wrapper:nth-child(4) .label-container .label-text {
+  order: 1;
+  margin-left: 4px;
+}
